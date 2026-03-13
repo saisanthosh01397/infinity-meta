@@ -1,0 +1,158 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.cdnfonts.com/css/opendyslexic');
+
+:root {
+  --line-height: 1.6;
+  --color-brand-primary: #00d4ff;
+  --color-brand-bg: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-surface-light: #ffffff;
+  --color-text-primary: #080810;
+  --color-text-secondary: #6c757d;
+  --color-border: #e9ecef;
+}
+
+.dark {
+  --color-brand-bg: #080810;
+  --color-surface: #0f0f1a;
+  --color-surface-light: #16162a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0b0;
+  --color-border: rgba(255, 255, 255, 0.1);
+}
+
+@theme {
+  --font-syne: "Syne", sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-primary: var(--color-brand-primary);
+  --color-brand-bg: var(--color-brand-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-light: var(--color-surface-light);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-border: var(--color-border);
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-text-primary font-sans antialiased;
+    line-height: var(--line-height);
+    background-image: radial-gradient(circle, currentColor 0.5px, transparent 0.5px);
+    background-size: 28px 28px;
+    opacity: 1;
+  }
+
+  .dark body {
+    background-image: radial-gradient(circle, #ffffff08 1px, transparent 1px);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-syne font-bold tracking-tight;
+    letter-spacing: -0.02em;
+  }
+
+  /* Dyslexia Mode */
+  body.dyslexia-mode {
+    font-family: 'OpenDyslexic', 'Comic Sans MS', cursive !important;
+    letter-spacing: 0.1em !important;
+    word-spacing: 0.2em !important;
+    line-height: 1.8 !important;
+  }
+
+  /* High Contrast Mode */
+  body.high-contrast {
+    filter: contrast(1.5) !important;
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  body.high-contrast .glass {
+    background: rgba(0, 0, 0, 0.9) !important;
+    border-color: #ffff00 !important;
+  }
+
+  body.high-contrast button, 
+  body.high-contrast a {
+    border: 2px solid #ffff00 !important;
+  }
+
+  /* Focus Outlines */
+  *:focus-visible {
+    outline: 3px solid #00d4ff20 !important;
+    box-shadow: 0 0 0 3px #00d4ff20;
+    outline-offset: 2px;
+  }
+}
+
+.glass {
+  @apply bg-white/5 backdrop-blur-lg border border-white/10;
+}
+
+.neon-border {
+  @apply border border-brand-primary/50 shadow-[0_0_15px_rgba(0,212,255,0.3)];
+}
+
+.neon-text {
+  @apply text-brand-primary;
+}
+
+/* Micro-interactions */
+.btn-scale {
+  @apply transition-transform duration-150 active:scale-[0.97];
+}
+
+.card-hover {
+  @apply transition-transform duration-200 hover:-translate-y-0.5;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  50% { box-shadow: 0 0 20px 0 rgba(16, 185, 129, 0.4); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 0.6s ease-in-out;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes bounce-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.animate-bounce-scale {
+  animation: bounce-scale 0.3s ease-out;
+}
+
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-transition {
+  animation: fade-slide-up 0.25s ease-out;
+}
+

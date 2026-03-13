@@ -1,0 +1,5 @@
+{
+  "name": "Infinite Quiz AI",
+  "description": "AI-powered infinite quiz generator with adaptive learning, gamification, and deep analytics.",
+  "requestFramePermissions": ["camera", "microphone"]
+}
